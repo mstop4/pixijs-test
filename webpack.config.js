@@ -1,4 +1,5 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   output: {
@@ -10,15 +11,18 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       }
     ]
   },
   
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
+      template: './src/index.html',
+      filename: './index.html'
+    }),
+    new CopyPlugin([
+      { from: 'src/img', to: 'img' },
+    ]),
   ]
 };

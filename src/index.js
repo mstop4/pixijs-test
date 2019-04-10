@@ -1,7 +1,35 @@
-import { listThings } from './js/helloworld';
 import * as PIXI from 'pixi.js';
+import Stats from 'stats-js';
 
-listThings([1, 2, 3, 4, 5]);
+const stats = new Stats();
+stats.showPanel(1);
+document.body.appendChild(stats.dom);
+
+const animate = () => {
+  stats.begin();
+  stats.end();
+  requestAnimationFrame(animate);
+};
+
+requestAnimationFrame(animate);
+
+const cards = [];
+
+const setup = () => {
+  for (let i = 0; i < 12; i++) {
+    for (let j = 0; j < 12; j++) {
+      const sprite = new PIXI.Sprite(
+        PIXI.loader.resources['img/felt.png'].texture
+      );
+
+      sprite.x = i * 64;
+      sprite.y = j * 64;
+
+      cards.push(sprite);
+      app.stage.addChild(sprite);
+    }
+  }
+};
 
 let type = 'WebGL';
 if (!PIXI.utils.isWebGLSupported()) {
@@ -10,7 +38,9 @@ if (!PIXI.utils.isWebGLSupported()) {
 
 PIXI.utils.sayHello(type);
 
-const app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight});
+const app = new PIXI.Application({ width: 720, height: 720 });
 document.body.appendChild(app.view);
 
-app.view.requestFullscreen();
+PIXI.loader
+  .add('img/felt.png')
+  .load(setup);
