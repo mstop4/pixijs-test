@@ -16,5 +16,8 @@
     "eslint": "^5.16.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "pixi.js": "^4.8.7"
   }
 }
