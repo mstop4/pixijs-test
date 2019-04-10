@@ -1,46 +1,59 @@
 import * as PIXI from 'pixi.js';
-import Stats from 'stats-js';
+import 'pixi-display';
+import { CardDemo } from './js/cardDemo';
 
-const stats = new Stats();
-stats.showPanel(1);
-document.body.appendChild(stats.dom);
+let currentScene = null;
+let fpsCounter;
+let app;
+let uiLayer;
 
-const animate = () => {
-  stats.begin();
-  stats.end();
-  requestAnimationFrame(animate);
-};
-
-requestAnimationFrame(animate);
-
-const cards = [];
-
-const setup = () => {
-  for (let i = 0; i < 12; i++) {
-    for (let j = 0; j < 12; j++) {
-      const sprite = new PIXI.Sprite(
-        PIXI.loader.resources['img/felt.png'].texture
-      );
-
-      sprite.x = i * 64;
-      sprite.y = j * 64;
-
-      cards.push(sprite);
-      app.stage.addChild(sprite);
-    }
+const initApp = () => {
+  let type = 'WebGL';
+  if (!PIXI.utils.isWebGLSupported()) {
+    type = 'canvas';
   }
+  
+  PIXI.utils.sayHello(type);
+  
+  app = new PIXI.Application({ width: 720, height: 720 });
+  document.body.appendChild(app.view);
+
+  app.stage.displayList = new PIXI.DisplayList();
+  uiLayer = new PIXI.DisplayGroup(1, false);
+
+  initFpsCounter();
 };
 
-let type = 'WebGL';
-if (!PIXI.utils.isWebGLSupported()) {
-  type = 'canvas';
-}
+const initFpsCounter = () => {
+  const fpsStyle = new PIXI.TextStyle({
+    fontFamily: 'Arial',
+    fontSize: 24,
+    fill: 'white'
+  });
 
-PIXI.utils.sayHello(type);
+  fpsCounter = new PIXI.Text('0', fpsStyle);
+  fpsCounter.displayGroup = uiLayer;
+  app.stage.addChild(fpsCounter);
+};
 
-const app = new PIXI.Application({ width: 720, height: 720 });
-document.body.appendChild(app.view);
+const loadResources = () => {
+  PIXI.loader
+    .add('img/felt.png')
+    .load(loadScene);
+};
 
-PIXI.loader
-  .add('img/felt.png')
-  .load(setup);
+const loadScene = () => {
+  currentScene = new CardDemo(app);
+  currentScene.init();
+
+  app.ticker.add(delta => {
+    if (currentScene) {
+      currentScene.process(delta);
+    }
+
+    fpsCounter.text = app.ticker.FPS;
+  });
+};
+
+initApp();
+loadResources();
