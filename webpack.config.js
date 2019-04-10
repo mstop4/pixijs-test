@@ -1,4 +1,9 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
+  output: {
+    filename: 'bundle.js'
+  },
 
   module: {
     rules: [
@@ -8,6 +13,12 @@ module.exports = {
         loader: "babel-loader"
       }
     ]
-  }
+  },
   
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };
