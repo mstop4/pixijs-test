@@ -54,6 +54,7 @@ class Game {
 
   changeScene(sceneName) {
     if (this.currentScene) {
+      this.currentScene.cleanup();
       this.app.stage.removeChild(this.currentScene);
       this.currentScene.destroy({
         children: true

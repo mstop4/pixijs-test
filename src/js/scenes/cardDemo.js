@@ -9,8 +9,10 @@ const numCards = 144;
 export class CardDemo extends Scene {
   constructor(app) {
     super(app);
+
     this.cards = [];
     this.curCard = 0;
+    this.timeout = null;
 
     this.moveCard = this.moveCard.bind(this);
     const cardGroup = new PIXI.DisplayGroup(0, true);
@@ -38,11 +40,15 @@ export class CardDemo extends Scene {
     if (this.curCard < this.cards.length) {
       this.cards[this.curCard].moveStart();
       this.curCard++;
-      setTimeout(this.moveCard, 1000);
+      this.timeout = setTimeout(this.moveCard, 1000);
     }
   }
 
   process(delta) {
     this.cards.forEach(card => card.process(delta));
+  }
+
+  cleanup() {
+    clearTimeout(this.timeout);
   }
 }
