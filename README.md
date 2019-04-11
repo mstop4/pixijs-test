@@ -1,4 +1,4 @@
-# Pixi.JS Test
+# Pixi.JS Demos
 
 A collection of demos built with Pixi.JS. Designed to run on 9:16 portrait displays (e.g. phones), but will respond to displays of other aspect ratios.
 
