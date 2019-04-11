@@ -19,13 +19,13 @@ export class CardDemo extends Scene {
       const card = new Card(50+i, 50+i, 500-i, 500-i, 'img/felt.png', cardGroup, i);
 
       this.cards.push(card);
-      this.game.app.stage.addChild(card);
+      this.addChild(card);
     }
 
     this.clickHandler = this.clickHandler.bind(this);
 
     this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
-    this.game.app.stage.addChild(this.backButton);
+    this.addChild(this.backButton);
 
     this.moveCard();
   }
@@ -44,14 +44,5 @@ export class CardDemo extends Scene {
 
   process(delta) {
     this.cards.forEach(card => card.process(delta));
-  }
-
-  destroy() {
-    this.cards.forEach(card => {
-      this.game.app.stage.removeChild(card);
-      card.destroy({
-        children: true
-      });
-    });
   }
 }

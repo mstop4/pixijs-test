@@ -54,11 +54,15 @@ class Game {
 
   changeScene(sceneName) {
     if (this.currentScene) {
-      this.currentScene.destroy();
+      this.app.stage.removeChild(this.currentScene);
+      this.currentScene.destroy({
+        children: true
+      });
     }
 
     if (sceneName in this.sceneFactory) {
       this.currentScene = new this.sceneFactory[sceneName](this);
+      this.app.stage.addChild(this.currentScene);
     }
   }
 
