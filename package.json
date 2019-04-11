@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "pixi-display": "^1.1.1",
-    "pixi.js": "^4.8.7"
+    "pixi.js": "^4.8.7",
+    "random-words": "^1.1.0"
   }
 }

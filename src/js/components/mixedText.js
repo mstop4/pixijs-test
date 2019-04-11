@@ -8,10 +8,8 @@ export class MixedText extends PIXI.Container {
     this.x = x;
     this.y = y;
 
-    this.textElements = [];
     this.sprites = [];
     this.textObjects = [];
-
     this.numSpritesUsed = 0;
     this.numTextObjectsUsed = 0;
 
