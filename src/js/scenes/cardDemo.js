@@ -22,7 +22,7 @@ export class CardDemo extends Scene {
 
     const background = new PIXI.Graphics();
 
-    background.beginFill(0xDE3249);
+    background.beginFill(0x008060);
     background.drawRect(0, 0, this.game.baseWidth, this.game.baseHeight);
     background.endFill();
 
