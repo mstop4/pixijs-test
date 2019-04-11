@@ -1,6 +1,7 @@
 import randomWords from 'random-words';
 import { Scene } from './scene';
 import { MixedText } from '../components/mixedText';
+import { Button } from '../components/button';
 import { emoteIds } from '../manifests/mixedTextEmotes';
 import { intRandomRange, shuffle } from '../helpers';
 
@@ -19,7 +20,16 @@ export class TextDemo extends Scene {
     this.mixedText = new MixedText(32, 100);
     this.game.app.stage.addChild(this.mixedText);
 
+    this.clickHandler = this.clickHandler.bind(this);
+
+    this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
+    this.game.app.stage.addChild(this.backButton);
+
     this.updateText();
+  }
+
+  clickHandler(gotoScene) {
+    this.game.changeScene(gotoScene);
   }
 
   updateText() {
@@ -45,7 +55,11 @@ export class TextDemo extends Scene {
 
   destroy() {
     this.game.app.stage.removeChild(this.mixedText);
+    this.game.app.stage.removeChild(this.backButton);
     this.mixedText.destroy({
+      children: true
+    });
+    this.backButton.destroy({
       children: true
     });
   }

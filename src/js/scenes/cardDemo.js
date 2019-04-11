@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import 'pixi-display';
 import { Scene } from './scene';
 import { Card } from '../components/card';
+import { Button } from '../components/button';
 
 const numCards = 144;
 
@@ -21,7 +22,16 @@ export class CardDemo extends Scene {
       this.game.app.stage.addChild(card);
     }
 
+    this.clickHandler = this.clickHandler.bind(this);
+
+    this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
+    this.game.app.stage.addChild(this.backButton);
+
     this.moveCard();
+  }
+
+  clickHandler(gotoScene) {
+    this.game.changeScene(gotoScene);
   }
 
   moveCard() {
@@ -36,7 +46,7 @@ export class CardDemo extends Scene {
     this.cards.forEach(card => card.process(delta));
   }
 
-  cleanup() {
+  destroy() {
     this.cards.forEach(card => {
       this.game.app.stage.removeChild(card);
       card.destroy({

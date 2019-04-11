@@ -23,8 +23,8 @@ class Game {
     PIXI.utils.sayHello(type);
     
     this.app = new PIXI.Application({
-      width: 720, 
-      height: 720
+      width: window.innerWidth, 
+      height: window.innerHeight
     });
     document.body.appendChild(this.app.view);
   
