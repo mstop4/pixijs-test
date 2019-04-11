@@ -1,4 +1,4 @@
-# Pixi.JS Test
+# Pixi.JS Demos
 
 A collection of demos built with Pixi.JS. Designed to run on 9:16 portrait displays (e.g. phones), but will respond to displays of other aspect ratios.
 
@@ -15,6 +15,7 @@ Randomly-generated nonsense sentences interspersed with graphical icons. Automat
 ## Fire Demo
 
 A warm flame in the dark made with Pixi's particle system.
+<<<<<<< HEAD
 
 ## Running/Building it Yourself
 
@@ -22,3 +23,5 @@ A warm flame in the dark made with Pixi's particle system.
 `npm run build` - create a production build
 `npm run build:dev` - create a development build
 `npm run deploy` - create a production build and deploy it to Github Pages
+=======
+>>>>>>> 658edc913baac5d7368f5be1da4b848097c020fc
