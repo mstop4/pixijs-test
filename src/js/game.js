@@ -3,6 +3,7 @@ import 'pixi-display';
 import { TitleScreen } from './scenes/titleScreen';
 import { CardDemo } from './scenes/cardDemo';
 import { TextDemo } from './scenes/textDemo';
+import { FireDemo } from './scenes/fireDemo';
 
 class Game {
   constructor() {
@@ -17,7 +18,8 @@ class Game {
     this.sceneFactory = {
       'TitleScreen': TitleScreen,
       'CardDemo': CardDemo,
-      'TextDemo': TextDemo
+      'TextDemo': TextDemo,
+      'FireDemo': FireDemo,
     };
 
     this.changeScene = this.changeScene.bind(this);
@@ -53,7 +55,6 @@ class Game {
 
   loadResources() {
     PIXI.loader
-      .add('img/felt.png')
       .add('img/cards.json')
       .load(() => this.changeScene('TitleScreen'));
   }
@@ -89,7 +90,7 @@ class Game {
         this.currentScene.process(delta);
       }
   
-      this.fpsCounter.text = this.app.ticker.FPS;
+      this.fpsCounter.text = this.app.ticker.FPS.toFixed(2);
     });
   }
 }

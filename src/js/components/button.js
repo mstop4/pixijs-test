@@ -1,20 +1,22 @@
 import * as PIXI from 'pixi.js';
 
 export class Button extends PIXI.Container {
-  constructor(x, y, textureID, text, onClick) {
+  constructor(x, y, text, onClick) {
     super();
 
     this.x = x;
     this.y = y;
 
+    const spriteSheet = PIXI.loader.resources['img/cards.json'];
+
     const buttonBase = new PIXI.Sprite(
-      PIXI.loader.resources[textureID].texture
+      spriteSheet.textures['button.png']
     );
     this.addChild(buttonBase);
     
     const labelStyle = new PIXI.TextStyle({
       fontFamily: 'Arial',
-      fontSize: 28,
+      fontSize: 36,
       fill: 0xFFFFFF,
       stroke: 0x202030,
       strokeThickness: 4,
@@ -25,7 +27,7 @@ export class Button extends PIXI.Container {
     label.anchor.set(0.5);
     label.x = this.width / 2;
     label.y = this.height / 2;
-    this.addChild(buttonBase);
+    this.addChild(label);
 
     this.interactive = true;
     this.buttonMode = true;

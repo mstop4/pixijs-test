@@ -7,11 +7,13 @@ export class TitleScreen extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.cardDemoButton = new Button(100, 100, 'img/felt.png', 'Test', () => this.clickHandler('CardDemo'));
-    this.textDemoButton = new Button(100, 200, 'img/felt.png', 'Test', () => this.clickHandler('TextDemo'));
+    this.cardDemoButton = new Button(100, 100, 'Cards Demo', () => this.clickHandler('CardDemo'));
+    this.textDemoButton = new Button(100, 200, 'Text Demo', () => this.clickHandler('TextDemo'));
+    this.fireDemoButton = new Button(100, 300, 'Fire Demo', () => this.clickHandler('FireDemo'));
 
     this.addChild(this.cardDemoButton);
     this.addChild(this.textDemoButton);
+    this.addChild(this.fireDemoButton);
   }
 
   clickHandler(gotoScene) {

@@ -9,8 +9,8 @@ import { intRandomRange } from '../helpers';
 const numCards = 144;
 
 export class CardDemo extends Scene {
-  constructor(app) {
-    super(app);
+  constructor(game) {
+    super(game);
 
     this.cards = [];
     this.curCard = 0;
@@ -40,7 +40,7 @@ export class CardDemo extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.backButton = new Button(360, 1200, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
+    this.backButton = new Button(360, 1200, 'Test', () => this.clickHandler('TitleScreen'));
     this.addChild(this.backButton);
 
     this.moveCard();

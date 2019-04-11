@@ -31,7 +31,7 @@ export class TextDemo extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
+    this.backButton = new Button(500, 500, 'Test', () => this.clickHandler('TitleScreen'));
     this.addChild(this.backButton);
 
     this.updateText();
