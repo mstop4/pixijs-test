@@ -1,24 +1,23 @@
-import { Scene } from './scene.js';
+import { Scene } from './scene';
 import * as PIXI from 'pixi.js';
 
 export class CardDemo extends Scene {
   constructor(app) {
     super(app);
     this.cards = [];
-  }
 
-  init() {
     for (let i = 0; i < 12; i++) {
       for (let j = 0; j < 12; j++) {
-        const sprite = new PIXI.Sprite(
+        const card = new PIXI.Sprite(
           PIXI.loader.resources['img/felt.png'].texture
         );
 
-        sprite.x = i * 64;
-        sprite.y = j * 64;
+        card.x = i * 64;
+        card.y = j * 64;
+        card.anchor.set(0.5);
 
-        this.cards.push(sprite);
-        this.app.stage.addChild(sprite);
+        this.cards.push(card);
+        this.app.stage.addChild(card);
       }
     }
   }

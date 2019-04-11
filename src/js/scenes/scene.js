@@ -3,11 +3,7 @@ export class Scene {
     this.app = app;
   }
 
-  init() {
-    // Code to initialize scene here
-  }
-
-  process(delta) {
+  process() {
     // Code to run every step here
   }
   

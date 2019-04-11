@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import 'pixi-display';
-import { CardDemo } from './js/cardDemo';
+import { TitleScreen } from './js/scenes/titleScreen';
+import { CardDemo } from './js/scenes/cardDemo';
 
 let currentScene = null;
 let fpsCounter;
@@ -8,14 +9,13 @@ let app;
 let uiLayer;
 
 const initApp = () => {
-  let type = 'WebGL';
-  if (!PIXI.utils.isWebGLSupported()) {
-    type = 'canvas';
-  }
-  
+  const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
   PIXI.utils.sayHello(type);
   
-  app = new PIXI.Application({ width: 720, height: 720 });
+  app = new PIXI.Application({
+    width: 720, 
+    height: 720
+  });
   document.body.appendChild(app.view);
 
   app.stage.displayList = new PIXI.DisplayList();
@@ -43,9 +43,11 @@ const loadResources = () => {
 };
 
 const loadScene = () => {
-  currentScene = new CardDemo(app);
-  currentScene.init();
+  currentScene = new TitleScreen(app);
+  startGameLoop();
+};
 
+const startGameLoop = () => {
   app.ticker.add(delta => {
     if (currentScene) {
       currentScene.process(delta);
