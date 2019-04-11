@@ -1,0 +1,44 @@
+{"frames": {
+
+"blueCard.png":
+{
+	"frame": {"x":0,"y":0,"w":103,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":138},
+	"sourceSize": {"w":103,"h":138}
+},
+"greenCard.png":
+{
+	"frame": {"x":0,"y":138,"w":103,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":138},
+	"sourceSize": {"w":103,"h":138}
+},
+"orangeCard.png":
+{
+	"frame": {"x":0,"y":276,"w":103,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":138},
+	"sourceSize": {"w":103,"h":138}
+},
+"redCard.png":
+{
+	"frame": {"x":0,"y":414,"w":103,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":138},
+	"sourceSize": {"w":103,"h":138}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cards.png",
+	"format": "RGBA8888",
+	"size": {"w":103,"h":552},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:48db007809911fd7cfadf84ce5dde80a:ad37d5bbf8343e03f04efdf9cfc22e01:8056528aade6b91f4a89f8c9da7f2d4c$"
+}
+}

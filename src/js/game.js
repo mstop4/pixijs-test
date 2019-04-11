@@ -11,6 +11,9 @@ class Game {
     this.uiLayer = null;
     this.currentScene = null;
 
+    this.baseWidth = 720;
+    this.baseHeight = 1280;
+
     this.sceneFactory = {
       'TitleScreen': TitleScreen,
       'CardDemo': CardDemo,
@@ -23,10 +26,12 @@ class Game {
     PIXI.utils.sayHello(type);
     
     this.app = new PIXI.Application({
-      width: window.innerWidth, 
+      width: window.innerWidth,
       height: window.innerHeight
     });
+
     document.body.appendChild(this.app.view);
+    window.addEventListener('resize', this.scaleSceneToWindow.bind(this), false);
   
     this.app.stage.displayList = new PIXI.DisplayList();
     this.uiLayer = new PIXI.DisplayGroup(2, false);
@@ -49,6 +54,7 @@ class Game {
   loadResources() {
     PIXI.loader
       .add('img/felt.png')
+      .add('img/cards.json')
       .load(() => this.changeScene('TitleScreen'));
   }
 
@@ -63,7 +69,16 @@ class Game {
 
     if (sceneName in this.sceneFactory) {
       this.currentScene = new this.sceneFactory[sceneName](this);
+      this.currentScene.updateSize();
       this.app.stage.addChild(this.currentScene);
+    }
+  }
+
+  scaleSceneToWindow() {
+    this.app.renderer.resize(window.innerWidth, window.innerHeight);
+
+    if (this.currentScene) {
+      this.currentScene.updateSize();
     }
   }
 

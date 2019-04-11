@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import randomWords from 'random-words';
 import { Scene } from './scene';
 import { MixedText } from '../components/mixedText';
@@ -8,8 +9,8 @@ import { intRandomRange, shuffle } from '../helpers';
 const maxWordsPerPhrase = 5;
 const maxEmotesPerSentence = 10;
 const maxPhrasesPerSentence = 5;
-const minFontSize = 12;
-const maxFontSize = 24;
+const minFontSize = 24;
+const maxFontSize = 48;
 
 export class TextDemo extends Scene {
   constructor(game) {
@@ -17,6 +18,14 @@ export class TextDemo extends Scene {
 
     this.timeout = null;
     this.updateText = this.updateText.bind(this);
+
+    const background = new PIXI.Graphics();
+
+    background.beginFill(0x004080);
+    background.drawRect(0, 0, this.game.baseWidth, this.game.baseHeight);
+    background.endFill();
+
+    this.addChild(background);
 
     this.mixedText = new MixedText(32, 100);
     this.addChild(this.mixedText);
