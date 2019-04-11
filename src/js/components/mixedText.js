@@ -90,7 +90,7 @@ export class MixedText extends PIXI.Container {
 
           else {
             buffer += word;
-            if (i != words.length + 1) {
+            if (i != words.length - 1) {
               buffer += ' ';
             }
           }
@@ -133,6 +133,7 @@ export class MixedText extends PIXI.Container {
           cursorY += fontSize + this.lineSpacing;
           curSprite.x = cursorX;
           curSprite.y = cursorY;
+          cursorX += curSprite.width + this.elementPadding;
         }
 
         else {

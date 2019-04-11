@@ -40,7 +40,7 @@ export class CardDemo extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.backButton = new Button(360, 1200, 'Test', () => this.clickHandler('TitleScreen'));
+    this.backButton = new Button(210, 1100, 'Back', () => this.clickHandler('TitleScreen'));
     this.addChild(this.backButton);
 
     this.moveCard();

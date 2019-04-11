@@ -9,7 +9,7 @@ const maxWordsPerPhrase = 5;
 const maxEmotesPerSentence = 10;
 const maxPhrasesPerSentence = 5;
 const minFontSize = 24;
-const maxFontSize = 48;
+const maxFontSize = 64;
 
 export class TextDemo extends Scene {
   constructor(game) {
@@ -31,7 +31,7 @@ export class TextDemo extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.backButton = new Button(500, 500, 'Test', () => this.clickHandler('TitleScreen'));
+    this.backButton = new Button(210, 1100, 'Back', () => this.clickHandler('TitleScreen'));
     this.addChild(this.backButton);
 
     this.updateText();

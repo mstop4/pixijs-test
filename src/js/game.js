@@ -29,7 +29,8 @@ class Game {
     
     this.app = new PIXI.Application({
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
+      backgroundColor: 0x302820
     });
 
     document.body.appendChild(this.app.view);
@@ -45,7 +46,10 @@ class Game {
     const fpsStyle = new PIXI.TextStyle({
       fontFamily: 'Arial',
       fontSize: 24,
-      fill: 'white'
+      fill: 'white',
+      stroke: 0x202030,
+      strokeThickness: 4,
+      padding: 20
     });
   
     this.fpsCounter = new PIXI.Text('0', fpsStyle);

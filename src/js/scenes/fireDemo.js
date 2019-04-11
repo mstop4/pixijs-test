@@ -19,7 +19,7 @@ export class FireDemo extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.backButton = new Button(500, 500, 'Test', () => this.clickHandler('TitleScreen'));
+    this.backButton = new Button(210, 1100, 'Back', () => this.clickHandler('TitleScreen'));
     this.addChild(this.backButton);
   }
 
