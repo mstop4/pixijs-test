@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import 'pixi-display';
 import { TitleScreen } from './scenes/titleScreen';
 import { CardDemo } from './scenes/cardDemo';
+import { TextDemo } from './scenes/textDemo';
 
 class Game {
   constructor() {
@@ -12,7 +13,8 @@ class Game {
 
     this.sceneFactory = {
       'TitleScreen': TitleScreen,
-      'CardDemo': CardDemo
+      'CardDemo': CardDemo,
+      'TextDemo': TextDemo
     };
 
     this.changeScene = this.changeScene.bind(this);

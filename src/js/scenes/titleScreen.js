@@ -7,17 +7,24 @@ export class TitleScreen extends Scene {
 
     this.clickHandler = this.clickHandler.bind(this);
 
-    this.button = new Button(100, 100, 'img/felt.png', 'Test', this.clickHandler);
-    this.game.app.stage.addChild(this.button);
+    this.cardDemoButton = new Button(100, 100, 'img/felt.png', 'Test', () => this.clickHandler('CardDemo'));
+    this.textDemoButton = new Button(100, 200, 'img/felt.png', 'Test', () => this.clickHandler('TextDemo'));
+
+    this.game.app.stage.addChild(this.cardDemoButton);
+    this.game.app.stage.addChild(this.textDemoButton);
   }
 
-  clickHandler() {
-    this.game.changeScene('CardDemo');
+  clickHandler(gotoScene) {
+    this.game.changeScene(gotoScene);
   }
 
   destroy() {
     this.game.app.stage.removeChild(this.button);
-    this.button.destroy({
+    this.cardDemoButton.destroy({
+      children: true
+    });
+
+    this.textDemoButton.destroy({
       children: true
     });
   }
