@@ -3,7 +3,7 @@ import 'pixi-display';
 import { TitleScreen } from './scenes/titleScreen';
 import { CardDemo } from './scenes/cardDemo';
 
-export class Game {
+class Game {
   constructor() {
     this.fpsCounter = null;
     this.app = null;
@@ -70,3 +70,6 @@ export class Game {
     });
   }
 }
+
+const game = new Game();
+export default game;

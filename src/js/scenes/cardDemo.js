@@ -1,35 +1,44 @@
 import { Scene } from './scene';
-import * as PIXI from 'pixi.js';
+import { Card } from '../components/card';
+
+const numCards = 144;
 
 export class CardDemo extends Scene {
   constructor(app) {
     super(app);
     this.cards = [];
+    this.curCard = 0;
 
-    for (let i = 0; i < 12; i++) {
-      for (let j = 0; j < 12; j++) {
-        const card = new PIXI.Sprite(
-          PIXI.loader.resources['img/felt.png'].texture
-        );
+    this.moveCard = this.moveCard.bind(this);
 
-        card.x = i * 64;
-        card.y = j * 64;
-        card.anchor.set(0.5);
+    for (let i = 0; i < numCards; i++) {
+      const card = new Card(50, 50, 350, 350, 'img/felt.png');
 
-        this.cards.push(card);
-        this.game.app.stage.addChild(card);
-      }
+      this.cards.push(card);
+      this.game.app.stage.addChild(card);
+    }
+
+    this.moveCard();
+  }
+
+  moveCard() {
+    if (this.curCard < this.cards.length) {
+      this.cards[this.curCard].moveStart();
+      this.curCard++;
+      setTimeout(this.moveCard, 1000);
     }
   }
 
   process(delta) {
-    this.cards.forEach(card => card.rotation += 0.01 * delta);
+    this.cards.forEach(card => card.process(delta));
   }
 
   cleanup() {
     this.cards.forEach(card => {
       this.game.app.stage.removeChild(card);
-      card.destroy();
+      card.destroy({
+        children: true
+      });
     });
   }
 }
