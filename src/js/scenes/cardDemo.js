@@ -9,8 +9,10 @@ const numCards = 144;
 export class CardDemo extends Scene {
   constructor(app) {
     super(app);
+
     this.cards = [];
     this.curCard = 0;
+    this.timeout = null;
 
     this.moveCard = this.moveCard.bind(this);
     const cardGroup = new PIXI.DisplayGroup(0, true);
@@ -19,13 +21,13 @@ export class CardDemo extends Scene {
       const card = new Card(50+i, 50+i, 500-i, 500-i, 'img/felt.png', cardGroup, i);
 
       this.cards.push(card);
-      this.game.app.stage.addChild(card);
+      this.addChild(card);
     }
 
     this.clickHandler = this.clickHandler.bind(this);
 
     this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
-    this.game.app.stage.addChild(this.backButton);
+    this.addChild(this.backButton);
 
     this.moveCard();
   }
@@ -38,7 +40,7 @@ export class CardDemo extends Scene {
     if (this.curCard < this.cards.length) {
       this.cards[this.curCard].moveStart();
       this.curCard++;
-      setTimeout(this.moveCard, 1000);
+      this.timeout = setTimeout(this.moveCard, 1000);
     }
   }
 
@@ -46,12 +48,7 @@ export class CardDemo extends Scene {
     this.cards.forEach(card => card.process(delta));
   }
 
-  destroy() {
-    this.cards.forEach(card => {
-      this.game.app.stage.removeChild(card);
-      card.destroy({
-        children: true
-      });
-    });
+  cleanup() {
+    clearTimeout(this.timeout);
   }
 }

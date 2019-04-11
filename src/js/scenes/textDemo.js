@@ -15,15 +15,16 @@ export class TextDemo extends Scene {
   constructor(game) {
     super(game);
 
+    this.timeout = null;
     this.updateText = this.updateText.bind(this);
 
     this.mixedText = new MixedText(32, 100);
-    this.game.app.stage.addChild(this.mixedText);
+    this.addChild(this.mixedText);
 
     this.clickHandler = this.clickHandler.bind(this);
 
     this.backButton = new Button(500, 500, 'img/felt.png', 'Test', () => this.clickHandler('TitleScreen'));
-    this.game.app.stage.addChild(this.backButton);
+    this.addChild(this.backButton);
 
     this.updateText();
   }
@@ -50,17 +51,10 @@ export class TextDemo extends Scene {
     newText = shuffle(newText);
     this.mixedText.updateText(newText, fontSize);
 
-    setTimeout(this.updateText, 2000);
+    this.timeout = setTimeout(this.updateText, 2000);
   }
 
-  destroy() {
-    this.game.app.stage.removeChild(this.mixedText);
-    this.game.app.stage.removeChild(this.backButton);
-    this.mixedText.destroy({
-      children: true
-    });
-    this.backButton.destroy({
-      children: true
-    });
+  cleanup() {
+    clearTimeout(this.timeout);
   }
 }
