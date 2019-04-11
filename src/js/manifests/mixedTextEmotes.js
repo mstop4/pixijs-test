@@ -1,7 +1,13 @@
 export const emoteIds = {
-  felt: 0
+  red: 0,
+  green: 1,
+  orange: 2,
+  blue: 3
 };
 
 export const emoteTextures = [
-  'img/felt.png'
+  'redCard.png',
+  'greenCard.png',
+  'orangeCard.png',
+  'blueCard.png'
 ];

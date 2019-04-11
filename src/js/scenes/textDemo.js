@@ -44,8 +44,8 @@ export class TextDemo extends Scene {
 
   updateText() {
     let newText = [];
-    let numPhrases = intRandomRange(0, maxPhrasesPerSentence);
-    let numEmotes = intRandomRange(0, maxEmotesPerSentence);
+    let numPhrases = intRandomRange(1, maxPhrasesPerSentence);
+    let numEmotes = intRandomRange(1, maxEmotesPerSentence);
     const fontSize = intRandomRange(minFontSize, maxFontSize);
 
     for (let i=0; i<numPhrases; i++) {
