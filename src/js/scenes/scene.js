@@ -1,6 +1,6 @@
 export class Scene {
-  constructor(app) {
-    this.app = app;
+  constructor(game) {
+    this.game = game;
   }
 
   process() {

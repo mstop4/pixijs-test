@@ -17,7 +17,7 @@ export class CardDemo extends Scene {
         card.anchor.set(0.5);
 
         this.cards.push(card);
-        this.app.stage.addChild(card);
+        this.game.app.stage.addChild(card);
       }
     }
   }
@@ -28,7 +28,7 @@ export class CardDemo extends Scene {
 
   cleanup() {
     this.cards.forEach(card => {
-      this.app.stage.removeChild(card);
+      this.game.app.stage.removeChild(card);
       card.destroy();
     });
   }
