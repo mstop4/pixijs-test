@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import randomWords from 'random-words';
 import { Scene } from './scene';
 import { MixedText } from '../components/mixedText';
@@ -17,6 +18,14 @@ export class TextDemo extends Scene {
 
     this.timeout = null;
     this.updateText = this.updateText.bind(this);
+
+    const background = new PIXI.Graphics();
+
+    background.beginFill(0xDE3249);
+    background.drawRect(0, 0, this.game.baseWidth, this.game.baseHeight);
+    background.endFill();
+
+    this.addChild(background);
 
     this.mixedText = new MixedText(32, 100);
     this.addChild(this.mixedText);

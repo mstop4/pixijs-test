@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { easeOutCubic, lerp, clamp } from '../helpers';
 
 export class Card extends PIXI.Container {
-  constructor(startX, startY, endX, endY, textureID, displayGroup, zOrder) {
+  constructor(startX, startY, endX, endY, texture, displayGroup, zOrder) {
     super();
 
     this.x = startX;
@@ -26,7 +26,7 @@ export class Card extends PIXI.Container {
     this.animDuration = 120;
 
     this.sprite = new PIXI.Sprite(
-      PIXI.loader.resources[textureID].texture
+      texture
     );
 
     this.sprite.anchor.set(0.5);
