@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { emoteTextures } from '../manifests/mixedTextEmotes';
 
 export class MixedText extends PIXI.Container {
   constructor(x, y) {
@@ -72,7 +73,8 @@ export class MixedText extends PIXI.Container {
           this.addChild(curSprite);
         }
 
-        curSprite.texture = PIXI.utils.TextureCache['img/felt.png'];
+        const texture = emoteTextures[elem];
+        curSprite.texture = PIXI.utils.TextureCache[texture];
         curSprite.x = cursorX;
         curSprite.visible = true;
 
