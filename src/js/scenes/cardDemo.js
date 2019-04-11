@@ -1,3 +1,5 @@
+import * as PIXI from 'pixi.js';
+import 'pixi-display';
 import { Scene } from './scene';
 import { Card } from '../components/card';
 
@@ -10,9 +12,10 @@ export class CardDemo extends Scene {
     this.curCard = 0;
 
     this.moveCard = this.moveCard.bind(this);
+    const cardGroup = new PIXI.DisplayGroup(0, true);
 
     for (let i = 0; i < numCards; i++) {
-      const card = new Card(50, 50, 350, 350, 'img/felt.png');
+      const card = new Card(50+i, 50+i, 500-i, 500-i, 'img/felt.png', cardGroup, i);
 
       this.cards.push(card);
       this.game.app.stage.addChild(card);

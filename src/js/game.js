@@ -27,7 +27,7 @@ class Game {
     document.body.appendChild(this.app.view);
   
     this.app.stage.displayList = new PIXI.DisplayList();
-    this.uiLayer = new PIXI.DisplayGroup(1, false);
+    this.uiLayer = new PIXI.DisplayGroup(2, false);
 
     this.initFpsCounter();
   }
@@ -62,6 +62,7 @@ class Game {
 
   startGameLoop() {
     this.app.ticker.add(delta => {
+
       if (this.currentScene) {
         this.currentScene.process(delta);
       }

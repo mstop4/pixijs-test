@@ -1,12 +1,15 @@
 import * as PIXI from 'pixi.js';
-import { easeOutCubic, lerp } from '../helpers';
+import { easeOutCubic, lerp, clamp } from '../helpers';
 
 export class Card extends PIXI.Container {
-  constructor(startX, startY, endX, endY, textureID) {
+  constructor(startX, startY, endX, endY, textureID, displayGroup, zOrder) {
     super();
 
     this.x = startX;
     this.y = startY;
+    this.displayGroup = displayGroup;
+    this.absoluteZOrder = zOrder;
+    this.zOrder = zOrder;
 
     this.startCoords = {
       x: startX,
@@ -18,10 +21,9 @@ export class Card extends PIXI.Container {
       y: endY
     };
 
-    this.t = 0;
     this.isMoving = false;
-    this.startTime = 0;
-    this.animDuration = 2000;
+    this.curTime = 0;
+    this.animDuration = 120;
 
     this.sprite = new PIXI.Sprite(
       PIXI.loader.resources[textureID].texture
@@ -33,18 +35,21 @@ export class Card extends PIXI.Container {
 
   moveStart() {
     this.isMoving = true;
-    this.startTime = Date.now();
   }
 
-  process() {
+  process(delta) {
     if (this.isMoving) {
-      this.t = Math.min(1, (Date.now() - this.startTime) / this.animDuration); 
-      this.x = easeOutCubic(this.startCoords.x, this.endCoords.x, this.t);
-      this.y = easeOutCubic(this.startCoords.y, this.endCoords.y, this.t);
+      this.curTime += delta;
+      const t = clamp(easeOutCubic(0, 1, this.curTime / this.animDuration), 0, 1);
+      this.x = lerp(this.startCoords.x, this.endCoords.x, t);
+      this.y = lerp(this.startCoords.y, this.endCoords.y, t);
 
-      if (this.t === 1) {
+      if (t >= 0.5 && this.zOrder > 0) {
+        this.zOrder = -this.absoluteZOrder;
+      }
+
+      if (t === 1) {
         this.isMoving = false;
-
       }
     }
   }
