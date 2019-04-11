@@ -10,6 +10,14 @@ export class TextDemo extends Scene {
     this.mixedText.updateText(['Hello', emoteIds.felt , emoteIds.felt, 'World', 'foo foo foo', emoteIds.felt], 24);
 
     this.game.app.stage.addChild(this.mixedText);
+
+    setTimeout(() => {
+      this.mixedText.updateText([emoteIds.felt , emoteIds.felt,  emoteIds.felt, emoteIds.felt, emoteIds.felt, emoteIds.felt, 'felt'], 36);
+    }, 2000);
+
+    setTimeout(() => {
+      this.mixedText.updateText(['fdsf', 'dsfsfewf', 'sfewffvv', 'sdfdsfdsfdsfdsf', 'dsfdsfsdfd'], 12);
+    }, 4000);
   }
 
   destroy() {

@@ -21,24 +21,22 @@ export class MixedText extends PIXI.Container {
       fill: 'white'
     });
 
+    this.textHeight = 72;
     this.elementPadding = 10;
   }
 
   updateText(textElements, fontSize) {
-    let cursorX = 0;
-
     this.cacheAsBitmap = false;
+
+    let cursorX = 0;
+    this.numSpritesUsed = 0;
+    this.numTextObjectsUsed = 0;
+    this.fontStyle.fontSize = fontSize;
 
     this.sprites.forEach(sprite => sprite.visible = false);
     this.textObjects.forEach(text => text.visible = false);
 
-    this.numSpritesUsed = 0;
-    this.numTextObjectsUsed = 0;
-
-    this.fontStyle.fontSize = fontSize;
-
     textElements.forEach(elem => {
-
       if (typeof elem === 'string') {
         let curTextObj;
         
@@ -48,6 +46,7 @@ export class MixedText extends PIXI.Container {
 
         else {
           curTextObj = new PIXI.Text('Hi', this.fontStyle);
+          this.textObjects.push(curTextObj);
           this.addChild(curTextObj);
         }
 
@@ -70,6 +69,7 @@ export class MixedText extends PIXI.Container {
 
         else {
           curSprite = new PIXI.Sprite();
+          this.sprites.push(curSprite);
           this.addChild(curSprite);
         }
 
@@ -78,12 +78,14 @@ export class MixedText extends PIXI.Container {
         curSprite.x = cursorX;
         curSprite.visible = true;
 
+        const newScale = fontSize / curSprite.texture.height;
+        curSprite.scale = new PIXI.Point(newScale, newScale);
+
         cursorX += curSprite.width + this.elementPadding;
         this.numSpritesUsed++;
       }
-
     });
 
-    //this.cacheAsBitmap = true;
+    this.cacheAsBitmap = true;
   }
 }
