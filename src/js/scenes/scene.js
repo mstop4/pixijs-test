@@ -16,8 +16,6 @@ export class Scene extends PIXI.Container {
     this.x = Math.max(0, (window.innerWidth - this.game.baseWidth * leastRatio) / 2) ;
     this.y = Math.max(0, (window.innerHeight - this.game.baseHeight * leastRatio) / 2);
     this.scale = new PIXI.Point(leastRatio, leastRatio);
-  
-    console.log((window.innerWidth - this.game.baseWidth) / 2);
   }
 
   process() {

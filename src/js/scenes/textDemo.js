@@ -3,7 +3,6 @@ import randomWords from 'random-words';
 import { Scene } from './scene';
 import { MixedText } from '../components/mixedText';
 import { Button } from '../components/button';
-import { emoteIds } from '../manifests/mixedTextEmotes';
 import { intRandomRange, shuffle } from '../helpers';
 
 const maxWordsPerPhrase = 5;
@@ -54,7 +53,7 @@ export class TextDemo extends Scene {
     }
 
     for (let i=0; i<numEmotes; i++) {
-      newText.push(emoteIds.felt);
+      newText.push(intRandomRange(0, 3));
     }
 
     newText = shuffle(newText);
