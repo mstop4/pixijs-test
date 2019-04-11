@@ -15,13 +15,10 @@ Randomly-generated nonsense sentences interspersed with graphical icons. Automat
 ## Fire Demo
 
 A warm flame in the dark made with Pixi's particle system.
-<<<<<<< HEAD
 
 ## Running/Building it Yourself
 
-`npm start` - start the dev server on `http://0.0.0.0:8080`
-`npm run build` - create a production build
-`npm run build:dev` - create a development build
-`npm run deploy` - create a production build and deploy it to Github Pages
-=======
->>>>>>> 658edc913baac5d7368f5be1da4b848097c020fc
+- `npm start` - start the dev server on `http://0.0.0.0:8080`
+- `npm run build` - create a production build
+- `npm run build:dev` - create a development build
+- `npm run deploy` - create a production build and deploy it to Github Pages
